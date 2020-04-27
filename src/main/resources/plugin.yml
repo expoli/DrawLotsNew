@@ -1,0 +1,6 @@
+name: "DrawLotsNew"
+author: "expoli"
+version: "0.1.0"
+main: "tech.expoli.plugin.DrawLotsNew"
+info: "DrawLots更新版本"
+depends: []
