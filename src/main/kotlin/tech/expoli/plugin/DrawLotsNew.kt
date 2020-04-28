@@ -1,11 +1,10 @@
 package tech.expoli.plugin
 
-import io.ktor.http.ContentType
 import net.mamoe.mirai.console.command.ContactCommandSender
 import net.mamoe.mirai.console.command.registerCommand
 import net.mamoe.mirai.console.plugins.PluginBase
 import net.mamoe.mirai.contact.Group
-import net.mamoe.mirai.event.*
+import net.mamoe.mirai.event.subscribeGroupMessages
 
 
 object DrawLotsNew : PluginBase() {
@@ -34,18 +33,18 @@ object DrawLotsNew : PluginBase() {
         registerCommands()
 
         subscribeGroupMessages {
-            (contains("抽签")){
+            (case("抽签", ignoreCase = true, trim = true)){
                 //logger.info(senderName + "抽签")
-                if (groupList.contains(this.group.id)){
+                if (groupList.contains(this.group.id)) {
                     this.quoteReply("\n" +
                             drawLots!!.sign(sender.id))
                 }
             }
-            (contains("解签")){
+            (case("解签", ignoreCase = true, trim = true)){
                 //logger.info(senderName + "解签")
                 if (groupList.contains(this.group.id)) {
                     this.quoteReply("\n" +
-                                drawLots!!.unSign(sender.id)
+                            drawLots!!.unSign(sender.id)
                     )
                 }
             }
