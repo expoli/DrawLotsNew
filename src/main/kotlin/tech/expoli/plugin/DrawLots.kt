@@ -3,7 +3,7 @@ package tech.expoli.plugin
 import net.mamoe.mirai.console.plugins.ConfigSection
 import java.util.*
 
-class DrawLots(lotsPath : String) {
+class DrawLots(lotsPath: String) {
 
     private var lots: List<ConfigSection>?
     private var lotMap = mutableMapOf<Long, Int>()
@@ -70,7 +70,7 @@ class DrawLots(lotsPath : String) {
      */
     private fun checkDay() {
         val dayTemp = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        if (dayTemp > day) {
+        if (dayTemp != day) {
             day = dayTemp
             lotMap.clear()
         }

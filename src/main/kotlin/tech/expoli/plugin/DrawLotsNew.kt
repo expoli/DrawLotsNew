@@ -36,15 +36,13 @@ object DrawLotsNew : PluginBase() {
             (case("抽签", ignoreCase = true, trim = true)){
                 //logger.info(senderName + "抽签")
                 if (groupList.contains(this.group.id)) {
-                    this.quoteReply("\n" +
-                            drawLots!!.sign(sender.id))
+                    this.quoteReply(drawLots!!.sign(sender.id))
                 }
             }
             (case("解签", ignoreCase = true, trim = true)){
                 //logger.info(senderName + "解签")
                 if (groupList.contains(this.group.id)) {
-                    this.quoteReply("\n" +
-                            drawLots!!.unSign(sender.id)
+                    this.quoteReply(drawLots!!.unSign(sender.id)
                     )
                 }
             }
@@ -80,10 +78,10 @@ object DrawLotsNew : PluginBase() {
                 }
                 when (it[0].toLowerCase()) {
                     "enable" -> {
-                        val groupID: Long  = if (it.size == 1) {
-                            if(this is ContactCommandSender && this.contact is Group){ //判断是否在群里发送的命令
+                        val groupID: Long = if (it.size == 1) {
+                            if (this is ContactCommandSender && this.contact is Group) { //判断是否在群里发送的命令
                                 this.contact.id
-                            }else{
+                            } else {
                                 return@onCommand false
                             }
                         } else {
@@ -95,9 +93,9 @@ object DrawLotsNew : PluginBase() {
                     }
                     "disable" -> {
                         val groupID = if (it.size == 1) {
-                            if(this is ContactCommandSender && this.contact is Group){ //判断是否在群里发送的命令
+                            if (this is ContactCommandSender && this.contact is Group) { //判断是否在群里发送的命令
                                 this.contact.id
-                            }else{
+                            } else {
                                 return@onCommand false
                             }
                         } else {
