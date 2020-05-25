@@ -4,6 +4,7 @@ import net.mamoe.mirai.console.command.ContactCommandSender
 import net.mamoe.mirai.console.command.registerCommand
 import net.mamoe.mirai.console.plugins.PluginBase
 import net.mamoe.mirai.contact.Group
+import net.mamoe.mirai.event.subscribeFriendMessages
 import net.mamoe.mirai.event.subscribeGroupMessages
 
 
@@ -42,15 +43,20 @@ object DrawLotsNew : PluginBase() {
             (case("解签", ignoreCase = true, trim = true)){
                 //logger.info(senderName + "解签")
                 if (groupList.contains(this.group.id)) {
-                    this.quoteReply(drawLots!!.unSign(sender.id)
-                    )
+                    this.quoteReply(drawLots!!.unSign(sender.id))
                 }
             }
-
         }
 
+        subscribeFriendMessages {
+            (case("抽签", ignoreCase = true, trim = true)){
+                this.reply(drawLots!!.sign(sender.id))
+            }
+            (case("解签", ignoreCase = true, trim = true)){
+                this.reply(drawLots!!.unSign(sender.id))
+            }
+        }
     }
-
 
     override fun onDisable() {
         super.onDisable()
